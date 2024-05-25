@@ -12,6 +12,7 @@ public interface ProductRepository{
     int deleteById(Long id);
     List<Product> findAll();
     List<ProductCategory> findAllCategories();
+    ProductCategory findCategoryById(int id);
     Product findById(Long id);
     List<Product> findByCategory(ProductCategory category);
 

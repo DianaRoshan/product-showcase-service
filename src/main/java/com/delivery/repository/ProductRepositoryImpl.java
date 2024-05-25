@@ -7,7 +7,6 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -27,18 +26,16 @@ public class ProductRepositoryImpl implements ProductRepository{
     @Override
     public int insert(Product product) {
         String sql ="INSERT INTO product (name, description, count, category, price, date_start, date_delete) " +
-                "VALUES (:name, :description, :count, :category, :price, :date_start, :date_delete);";
+                "VALUES (:name, :description, :count, :category, :price, :date_start, :date_delete)";
         SqlParameterSource params = new MapSqlParameterSource()
                 .addValue("name", product.getName())
                 .addValue("description", product.getDescription())
                 .addValue("count", product.getCount())
-                .addValue("category", product.getCategory())
+                .addValue("category", product.getCategory().getId())
                 .addValue("price", product.getPrice())
                 .addValue("date_start", product.getDateStart())
                 .addValue("date_delete", product.getDateDelete());
-        GeneratedKeyHolder holder = new GeneratedKeyHolder();
-        product.setId(holder.getKey().intValue());
-        return jdbcTemplate.update(sql, params, holder);
+        return jdbcTemplate.queryForObject(sql, params, Integer.class);
     }
 
     @Override
@@ -56,18 +53,21 @@ public class ProductRepositoryImpl implements ProductRepository{
     @Override
     public List<Product> findAll() {
         String sql ="SELECT * FROM product";
-        return jdbcTemplate.query(sql, productMapper);
+        return jdbcTemplate.query(sql,new BeanPropertyRowMapper<>());
     }
 
     @Override
     public List<ProductCategory> findAllCategories() {
         String sql ="SELECT * FROM product_category";
-        return jdbcTemplate.query(sql,(rs, rowNum) ->
-                new ProductCategory(
-                                    rs.getInt("id"),
-                                    rs.getString("name_category")
-                )
-        );
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>());
+    }
+
+    @Override
+    public ProductCategory findCategoryById(int id) {
+        String sql="SELECT name_category FROM product_category WHERE id=:id";
+        SqlParameterSource params = new MapSqlParameterSource()
+                .addValue("id", id);
+        return jdbcTemplate.queryForObject(sql, params, ProductCategory.class);
     }
 
     @Override

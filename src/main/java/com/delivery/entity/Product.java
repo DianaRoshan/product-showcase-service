@@ -17,19 +17,10 @@ public class Product {
     private String name;
     private String description;
     private int count;
-    @MappedCollection
+    @MappedCollection(idColumn = "id")
     private ProductCategory category;
     private int price;
     private Date dateStart;
     private Date dateDelete;
-
-    public Product(String name, String description, int count, ProductCategory category, int price, Date dateStart, Date dateDelete) {
-        this.name = name;
-        this.description = description;
-        this.count = count;
-        this.category = category;
-        this.price = price;
-        this.dateStart = dateStart;
-        this.dateDelete = dateDelete;
-    }
+    
 }

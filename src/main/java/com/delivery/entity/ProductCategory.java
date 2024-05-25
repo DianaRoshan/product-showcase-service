@@ -1,7 +1,12 @@
 package com.delivery.entity;
 
-public record ProductCategory(
-        int id,
-        String nameCategory) {
+import lombok.Data;
+import org.springframework.data.annotation.Id;
+
+@Data
+public class ProductCategory {
+    @Id
+    private int id;
+    private String nameCategory;
 
 }

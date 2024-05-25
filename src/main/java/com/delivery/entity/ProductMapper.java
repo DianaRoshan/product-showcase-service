@@ -15,14 +15,14 @@ public class ProductMapper implements RowMapper<Product> {
     public Product mapRow(ResultSet rs, int rowNum) throws SQLException {
 
         return new Product(
-                rs.getInt("id"),
-                rs.getString("name"),
-                rs.getString("description"),
-                rs.getInt("count"),
-                rs.getObject("category",ProductCategory.class),
-                rs.getInt("price"),
-                Date.valueOf(rs.getString("date_start")),
-                Date.valueOf(rs.getString("date_delete"))
+//                rs.getInt("id"),
+//                rs.getString("name"),
+//                rs.getString("description"),
+//                rs.getInt("count"),
+//                rs.getInt("category"),
+//                rs.getInt("price"),
+//                Date.valueOf(rs.getString("date_start")),
+//                Date.valueOf(rs.getString("date_delete"))
         );
     }
 }
