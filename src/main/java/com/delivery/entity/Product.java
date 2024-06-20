@@ -4,23 +4,26 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.MappedCollection;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 
 import java.sql.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table("product")
 public class Product {
     @Id
     private int id;
     private String name;
     private String description;
     private int count;
-    @MappedCollection(idColumn = "id")
-    private ProductCategory category;
+    private int category;
     private int price;
+    @Column("date_start")
     private Date dateStart;
+    @Column("date_delete")
     private Date dateDelete;
     
 }

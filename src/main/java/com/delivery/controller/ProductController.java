@@ -1,7 +1,6 @@
 package com.delivery.controller;
 
 import com.delivery.entity.Product;
-import com.delivery.entity.ProductCategory;
 import org.springframework.web.bind.annotation.*;
 import com.delivery.service.ProductService;
 
@@ -25,8 +24,5 @@ public class ProductController {
     private List<Product> allProducts(){
         return service.showAllProducts();
     }
-    @GetMapping("/all-categories")
-    private List<ProductCategory> allCategories(){
-        return service.showAllCategories();
-    }
+
 }

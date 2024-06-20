@@ -1,8 +1,8 @@
-create table product_category(
+create table "product_category"(
                                  id serial primary key,
                                  name_category varchar(100)
 );
-create table product(
+create table "product"(
                         id serial primary key,
                         name varchar(100) not null ,
                         description varchar(255),
