@@ -7,7 +7,7 @@ create table "product"(
                         name varchar(100) not null ,
                         description varchar(255),
                         count integer not null ,
-                        category int references product_category(id),
+                        category int ,
                         price integer not null ,
                         date_start date not null ,
                         date_delete date
