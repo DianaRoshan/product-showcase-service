@@ -10,8 +10,6 @@ import org.springframework.data.relational.core.mapping.Table;
 import java.sql.Date;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Table("product")
 public class Product {
     @Id
