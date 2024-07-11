@@ -36,7 +36,7 @@ public class ProductController {
     }
 
     @GetMapping("/find/{name}")
-    public List<Product> findByCategory(@PathVariable String name){
+    public List<Product> findByName(@PathVariable String name){
         return service.findProductByName(name);
     }
 
