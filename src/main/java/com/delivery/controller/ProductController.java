@@ -30,12 +30,12 @@ public class ProductController {
         service.deleteProductById(id);
     }
 
-    @GetMapping("/find/{category}")
+    @GetMapping("/by-category/{category}")
     public List<Product> findByCategory(@PathVariable int category){
         return service.findProductByCategory(category);
     }
 
-    @GetMapping("/find/{name}")
+    @GetMapping("/by-name/{name}")
     public List<Product> findByName(@PathVariable String name){
         return service.findProductByName(name);
     }
